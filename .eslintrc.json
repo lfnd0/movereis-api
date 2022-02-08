@@ -11,6 +11,7 @@
     "ecmaVersion": "latest"
   },
   "rules": {
+    "camelcase": "off",
     "class-methods-use-this": "off",
     "no-console": "off",
     "quotes": [
