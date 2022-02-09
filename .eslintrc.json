@@ -17,6 +17,8 @@
     "quotes": [
       "error",
       "double"
-    ]
+    ],
+    "no-return-assign": "off",
+    "no-param-reassign": "off"
   }
 }
