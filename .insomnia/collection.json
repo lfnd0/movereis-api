@@ -1,0 +1,234 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2022-02-09T19:57:58.943Z",
+  "__export_source": "insomnia.desktop.app:v2021.7.2",
+  "resources": [
+    {
+      "_id": "req_6be4303cf465490488c3d9d688ed2bfc",
+      "parentId": "fld_75a4a567af6d4a18b2e2c330358d2053",
+      "modified": 1644436548257,
+      "created": 1644086079301,
+      "url": "{{ _.baseURL }}/users",
+      "name": "Create user",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"username\": \"logan\",\n\t\"email\": \"logan@mail.com\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_a6994c49fabf49018f834089f74fcfd7"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1644172028371,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_75a4a567af6d4a18b2e2c330358d2053",
+      "parentId": "wrk_3ca87f3f00fb43569614faa62a6dc25e",
+      "modified": 1644093425930,
+      "created": 1644093425930,
+      "name": "users",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1644093425930,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_3ca87f3f00fb43569614faa62a6dc25e",
+      "parentId": null,
+      "modified": 1644169339427,
+      "created": 1644026834281,
+      "name": "movereis-api",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_dbc6fa649e20425bb9aa08b6168ef17b",
+      "parentId": "fld_75a4a567af6d4a18b2e2c330358d2053",
+      "modified": 1644425195521,
+      "created": 1644172028321,
+      "url": "{{ _.baseURL }}/users/change/email",
+      "name": "Change e-mail",
+      "description": "",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\": \"jr.logan@mail.com\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_7310a3fc235240b9a0c9843875c0097b"
+        },
+        {
+          "id": "pair_d11060b16af74f8cb293851ccef09313",
+          "name": "id",
+          "value": "1",
+          "description": ""
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1644172028321,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_264300ebd9f4498f885dbfd40bb36e90",
+      "parentId": "fld_75a4a567af6d4a18b2e2c330358d2053",
+      "modified": 1644171708149,
+      "created": 1644168277580,
+      "url": "{{ _.baseURL }}/users/1/list/movies",
+      "name": "List movies",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1644168277581,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_a59988c0840245648509ab232811e2eb",
+      "parentId": "fld_fbf34ebd5a364c268754a43be9185de5",
+      "modified": 1644168609198,
+      "created": 1644095152990,
+      "url": "{{ _.baseURL }}/movies/list",
+      "name": "List movies",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1644095152991,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_fbf34ebd5a364c268754a43be9185de5",
+      "parentId": "wrk_3ca87f3f00fb43569614faa62a6dc25e",
+      "modified": 1644168646972,
+      "created": 1644093433492,
+      "name": "movies",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1644093425880,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_c6689539bd38466dbb6078a4b0ad76ac",
+      "parentId": "fld_fbf34ebd5a364c268754a43be9185de5",
+      "modified": 1644436541450,
+      "created": 1644094191167,
+      "url": "{{ _.baseURL }}/movies",
+      "name": "Create movie",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"title\": \"Homem-aranha: sem volta para casa\",\n\t\"genre\": \"Ação\",\n\t\"year\": 2021,\n\t\"director\": \"Jon Watts\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_de82a926e27c49f3bb0f9585e7022d02"
+        },
+        {
+          "id": "pair_782e4f796ba643eab561ea00912d6581",
+          "name": "user_id",
+          "value": "3ef30a28-d0e2-4c10-ace8-ff2b4b0fac34",
+          "description": ""
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1644094191167,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_9cbb265a43cef323030b9205cd3792bb4fe17f6e",
+      "parentId": "wrk_3ca87f3f00fb43569614faa62a6dc25e",
+      "modified": 1644027319105,
+      "created": 1644026834295,
+      "name": "Base Environment",
+      "data": {
+        "baseURL": "http://localhost:3333"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "baseURL"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1644026834295,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_9cbb265a43cef323030b9205cd3792bb4fe17f6e",
+      "parentId": "wrk_3ca87f3f00fb43569614faa62a6dc25e",
+      "modified": 1644026834300,
+      "created": 1644026834300,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_003a07e7fbcb47d1a3dba7ecd0b2137b",
+      "parentId": "wrk_3ca87f3f00fb43569614faa62a6dc25e",
+      "modified": 1644026834283,
+      "created": 1644026834283,
+      "fileName": "gruseer-api",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    }
+  ]
+}
