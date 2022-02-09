@@ -1,3 +1,4 @@
+const { v4: uuidV4 } = require("uuid");
 const { Model, DataTypes } = require("sequelize");
 
 class User extends Model {
@@ -8,6 +9,8 @@ class User extends Model {
     }, {
       sequelize,
     });
+
+    this.addHook("beforeSave", async (user) => user.id = uuidV4());
   }
 
   static associate(models) {
