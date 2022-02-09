@@ -14,6 +14,7 @@ class Movie extends Model {
 
   static associate(models) {
     this.belongsTo(models.User, { foreignKey: "user_id", as: "registrator" });
+    this.belongsTo(models.Genre, { foreignKey: "genre_id", as: "genre" });
   }
 }
 
