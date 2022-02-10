@@ -1,5 +1,6 @@
 const { v4: uuidV4 } = require("uuid");
 const { Model, DataTypes } = require("sequelize");
+const bcryptjs = require("bcryptjs");
 
 class User extends Model {
   static init(sequelize) {
@@ -11,7 +12,10 @@ class User extends Model {
       sequelize,
     });
 
-    this.addHook("beforeSave", async (user) => user.id = uuidV4());
+    this.addHook("beforeSave", async (user) => {
+      user.id = uuidV4();
+      user.password = await bcryptjs.hash(user.password, bcryptjs.genSaltSync());
+    });
   }
 
   static associate(models) {
