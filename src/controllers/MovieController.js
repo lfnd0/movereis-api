@@ -1,11 +1,12 @@
 const { findMovieByTitle, findUserById } = require("../middlewares");
+const Genre = require("../models/Genre");
 const Movie = require("../models/Movie");
 
 module.exports = {
   async store(request, response) {
     const { user_id } = request.headers;
     const {
-      title, genre, year, director,
+      title, year, director, genre_id,
     } = request.body;
 
     const userAlreadyExists = await findUserById(user_id);
@@ -21,7 +22,7 @@ module.exports = {
     const movie = await Movie.create({
       user_id,
       title,
-      genre,
+      genre_id,
       year,
       director,
     });
@@ -30,7 +31,7 @@ module.exports = {
   },
 
   async index(request, response) {
-    const movies = await Movie.findAll();
+    const movies = await Movie.findAll({ include: { model: Genre, attributes: ["name"], association: "genres" } });
 
     return response.status(200).json(movies);
   },
