@@ -13,6 +13,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    return queryInterface.removeColumn("movies", "genre");
+    await queryInterface.removeColumn("movies", "genre_id");
   },
 };
