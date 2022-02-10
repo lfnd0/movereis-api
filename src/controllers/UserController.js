@@ -1,9 +1,10 @@
 const { findUserByEmail, findUserById } = require("../middlewares");
+const Movie = require("../models/Movie");
 const User = require("../models/User");
 
 module.exports = {
   async store(request, response) {
-    const { username, email } = request.body;
+    const { username, email, password } = request.body;
 
     const userAlreadyExists = await findUserByEmail(email);
 
@@ -11,18 +12,18 @@ module.exports = {
       return response.status(400).json({ error: "E-mail already exists." });
     }
 
-    const user = await User.create({
-      username, email,
+    await User.create({
+      username, email, password,
     });
 
-    return response.status(201).json(user);
+    return response.status(201).json({ message: `User ${username} created successfully.` });
   },
 
   async index(request, response) {
     const { id } = request.params;
 
     const user = await User.findByPk(id, {
-      include: { association: "movies" },
+      include: { model: Movie, attributes: ["title", "year", "director", "genre_id"], association: "movies" },
     });
 
     if (!user) {
