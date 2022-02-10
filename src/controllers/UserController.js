@@ -47,8 +47,6 @@ module.exports = {
       return response.status(400).json({ error: "E-mail already exists." });
     }
 
-    // const user = await User.update({ email }, { where: { id } });
-
     user.email = email;
     await user.save();
 
