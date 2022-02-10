@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequelize/dist");
+const { Model, DataTypes } = require("sequelize");
 
 class Genre extends Model {
   static init(sequelize) {
