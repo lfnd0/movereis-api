@@ -1,8 +1,9 @@
 const express = require("express");
 const dotenv = require("dotenv");
 
-const movieRoutes = require("../routes/movie.routes");
 const userRoutes = require("../routes/user.routes");
+const movieRoutes = require("../routes/movie.routes");
+const genreRoutes = require("../routes/genre.routes");
 
 const app = express();
 
@@ -12,7 +13,8 @@ dotenv.config();
 
 app.use(express.json());
 
-app.use("/movies", movieRoutes);
 app.use("/users", userRoutes);
+app.use("/movies", movieRoutes);
+app.use("/genres", genreRoutes);
 
 module.exports = app;
