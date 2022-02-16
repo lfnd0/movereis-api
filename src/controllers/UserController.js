@@ -33,7 +33,7 @@ module.exports = {
     return response.status(200).json(user.movies);
   },
 
-  async change(request, response) {
+  async changeEmail(request, response) {
     const { id } = request.headers;
     const { email } = request.body;
 
