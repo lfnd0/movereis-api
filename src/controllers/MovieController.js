@@ -6,7 +6,7 @@ module.exports = {
   async store(request, response) {
     const { user_id } = request.headers;
     const {
-      title, year, director, genre_id,
+      title, year, director, genres_id,
     } = request.body;
 
     const userAlreadyExists = await findUserById(user_id);
@@ -22,10 +22,11 @@ module.exports = {
     const movie = await Movie.create({
       user_id,
       title,
-      genre_id,
       year,
       director,
     });
+
+    await movie.addGenres(genres_id);
 
     return response.status(201).json(movie);
   },
