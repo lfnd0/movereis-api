@@ -5,9 +5,25 @@ const bcryptjs = require("bcryptjs");
 class User extends Model {
   static init(sequelize) {
     super.init({
-      username: DataTypes.STRING,
-      email: DataTypes.STRING,
-      password: DataTypes.STRING,
+      username: {
+        type: DataTypes.STRING,
+        unique: true,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      email: {
+        type: DataTypes.STRING,
+        validate: {
+          isEmail: true,
+        },
+      },
+      password: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: true,
+        },
+      },
     }, {
       sequelize,
     });
@@ -19,7 +35,10 @@ class User extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Movie, { foreignKey: "user_id", as: "movies" });
+    this.hasMany(models.Movie, {
+      foreignKey: "user_id",
+      as: "movies",
+    });
   }
 }
 
