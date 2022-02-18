@@ -3,8 +3,16 @@ const { Model, DataTypes } = require("sequelize");
 class Movie extends Model {
   static init(sequelize) {
     super.init({
-      title: DataTypes.STRING,
-      year: DataTypes.INTEGER,
+      title: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
+      year: {
+        type: DataTypes.INTEGER,
+        validate: {
+          not: ["[a-z]", "i"],
+        },
+      },
       director: DataTypes.STRING,
     }, {
       sequelize,
@@ -12,8 +20,16 @@ class Movie extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.User, { foreignKey: "user_id", as: "registrator" });
-    this.belongsTo(models.Genre, { foreignKey: "genre_id", as: "genres" });
+    this.belongsTo(models.User, {
+      foreignKey: "user_id",
+      as: "registrator",
+    });
+
+    this.belongsToMany(models.Genre, {
+      through: "movies_genres",
+      foreignKey: "movie_id",
+      as: "genres",
+    });
   }
 }
 
