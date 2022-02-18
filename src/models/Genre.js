@@ -10,7 +10,11 @@ class Genre extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Movie, { foreignKey: "genre_id", as: "movies" });
+    this.belongsToMany(models.Movie, {
+      through: "movies_genres",
+      foreignKey: "genre_id",
+      as: "movies",
+    });
   }
 }
 
