@@ -1,15 +1,18 @@
-const { findUserByEmail, findUserById } = require("../middlewares");
 const Movie = require("../models/Movie");
 const User = require("../models/User");
 
 module.exports = {
-  async store(request, response) {
+  async createUser(request, response) {
     const { username, email, password } = request.body;
 
-    const userAlreadyExists = await findUserByEmail(email);
+    const usernameAlreadyExists = await User.findOne({ where: { username } });
+    if (usernameAlreadyExists) {
+      return response.status(400).json({ error: `Username ${username} already exists.` });
+    }
 
-    if (userAlreadyExists) {
-      return response.status(400).json({ error: "E-mail already exists." });
+    const emailAlreadyExists = await User.findOne({ where: { email } });
+    if (emailAlreadyExists) {
+      return response.status(400).json({ error: `E-mail ${username} already exists.` });
     }
 
     await User.create({
@@ -19,11 +22,11 @@ module.exports = {
     return response.status(201).json({ message: `User ${username} created successfully.` });
   },
 
-  async index(request, response) {
+  async listMovies(request, response) {
     const { id } = request.params;
 
     const user = await User.findByPk(id, {
-      include: { model: Movie, attributes: ["title", "year", "director", "genre_id"], association: "movies" },
+      include: { model: Movie, association: "movies" },
     });
 
     if (!user) {
@@ -37,14 +40,14 @@ module.exports = {
     const { id } = request.headers;
     const { email } = request.body;
 
-    const user = await findUserById(id);
+    const user = await User.findByPk(id);
     if (!user) {
       return response.status(404).json({ error: "User not found." });
     }
 
-    const verifyEmail = await findUserByEmail(email);
+    const verifyEmail = await User.findOne({ where: { email } });
     if (verifyEmail) {
-      return response.status(400).json({ error: "E-mail already exists." });
+      return response.status(400).json({ error: `E-mail ${email} already exists.` });
     }
 
     user.email = email;

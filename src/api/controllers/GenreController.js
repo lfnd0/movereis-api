@@ -1,11 +1,12 @@
 const Genre = require("../models/Genre");
+const Movie = require("../models/Movie");
 
 module.exports = {
-  async index(request, response) {
+  async listGenresWithMovies(request, response) {
     const { id } = request.params;
 
     const genre = await Genre.findByPk(id, {
-      include: { association: "movies" },
+      include: { model: Movie, association: "movies" },
     });
 
     if (!genre) {
