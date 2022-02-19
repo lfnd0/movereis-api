@@ -15,25 +15,24 @@ module.exports = {
       return response.status(400).json({ error: `E-mail ${username} already exists.` });
     }
 
-    await User.create({
+    const user = await User.create({
       username, email, password,
     });
 
-    return response.status(201).json({ message: `User ${username} created successfully.` });
+    return response.status(201).json(user);
   },
 
   async listMovies(request, response) {
     const { id } = request.params;
 
-    const user = await User.findByPk(id, {
-      include: { model: Movie, association: "movies" },
-    });
-
+    const user = await User.findByPk(id);
     if (!user) {
       return response.status(404).json({ error: "User not found." });
     }
 
-    return response.status(200).json(user.movies);
+    const movies = await Movie.findAll({ include: { association: "genres" }, where: { user_id: user.id } });
+
+    return response.status(200).json(movies);
   },
 
   async changeEmail(request, response) {
