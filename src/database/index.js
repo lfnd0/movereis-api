@@ -1,11 +1,12 @@
 const Sequelize = require("sequelize");
-const dbConfig = require("../config/database");
-const Genre = require("../models/Genre");
 
-const Movie = require("../models/Movie");
-const User = require("../models/User");
+const config = require("../config/database");
 
-const connection = new Sequelize(dbConfig);
+const Genre = require("../api/models/Genre");
+const Movie = require("../api/models/Movie");
+const User = require("../api/models/User");
+
+const connection = new Sequelize(config);
 
 Movie.init(connection);
 User.init(connection);
