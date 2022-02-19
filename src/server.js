@@ -1,6 +1,6 @@
-const app = require("./http/app");
+const app = require("./api/app");
 
-const port = process.env.SERVER_PORT || 3333;
+const port = process.env.SERVER_PORT || 3000;
 
 app.listen(port, () => {
   console.log(`Active app at: http://localhost:${port}`);
