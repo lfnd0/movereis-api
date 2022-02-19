@@ -1,8 +1,8 @@
 const express = require("express");
 
-const userRoutes = require("../routes/user.routes");
-const movieRoutes = require("../routes/movie.routes");
-const genreRoutes = require("../routes/genre.routes");
+const userRoutes = require("./routes/user.routes");
+const movieRoutes = require("./routes/movie.routes");
+const genreRoutes = require("./routes/genre.routes");
 
 const app = express();
 
