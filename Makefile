@@ -10,6 +10,11 @@ up:
 stop:
 	docker-compose stop
 
+.PHONY: down
+
+down:
+	docker-compose down
+
 .PHONY: logs
 
 logs:
