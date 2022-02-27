@@ -4,7 +4,7 @@ const User = require("../models/User");
 
 module.exports = {
   async createMovie(request, response) {
-    const { user_id } = request.headers;
+    const user_id = request.user;
     const {
       title, year, director, genres_id,
     } = request.body;
@@ -16,7 +16,7 @@ module.exports = {
 
     const movieAlreadyExists = await Movie.findOne({ where: { title } });
     if (movieAlreadyExists) {
-      return response.status(400).json({ error: "Movie already exists." });
+      return response.status(422).json({ error: "Movie already exists." });
     }
 
     const movie = await Movie.create({
