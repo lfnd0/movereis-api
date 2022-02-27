@@ -7,12 +7,12 @@ module.exports = {
 
     const usernameAlreadyExists = await User.findOne({ where: { username } });
     if (usernameAlreadyExists) {
-      return response.status(400).json({ error: `Username ${username} already exists.` });
+      return response.status(422).json({ error: "Username already exists." });
     }
 
     const emailAlreadyExists = await User.findOne({ where: { email } });
     if (emailAlreadyExists) {
-      return response.status(400).json({ error: `E-mail ${username} already exists.` });
+      return response.status(422).json({ error: "E-mail already exists." });
     }
 
     const user = await User.create({
@@ -23,7 +23,7 @@ module.exports = {
   },
 
   async listMovies(request, response) {
-    const { id } = request.params;
+    const id = request.user;
 
     const user = await User.findByPk(id);
     if (!user) {
@@ -36,22 +36,22 @@ module.exports = {
   },
 
   async changeEmail(request, response) {
-    const { id } = request.headers;
+    const id = request.user;
     const { email } = request.body;
 
     const user = await User.findByPk(id);
+
     if (!user) {
       return response.status(404).json({ error: "User not found." });
     }
 
     const verifyEmail = await User.findOne({ where: { email } });
     if (verifyEmail) {
-      return response.status(400).json({ error: `E-mail ${email} already exists.` });
+      return response.status(422).json({ error: "E-mail already exists." });
     }
 
-    user.email = email;
-    await user.save();
+    await User.update({ email }, { where: { id } });
 
-    return response.status(201).json(user);
+    return response.status(204).send();
   },
 };
