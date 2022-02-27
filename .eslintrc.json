@@ -19,6 +19,7 @@
       "double"
     ],
     "no-return-assign": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "consistent-return": "off"
   }
 }
