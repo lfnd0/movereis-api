@@ -1,4 +1,5 @@
 require("../database");
+const { errors } = require('celebrate');
 
 const express = require("express");
 
@@ -15,5 +16,7 @@ app.use("/users", userRoutes);
 app.use("/movies", movieRoutes);
 app.use("/genres", genreRoutes);
 app.use(authenticationRoutes);
+
+app.use(errors());
 
 module.exports = app;
