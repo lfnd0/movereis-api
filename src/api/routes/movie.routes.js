@@ -1,5 +1,5 @@
 const express = require("express");
-const { celebrate, Segments, Joi } = require('celebrate');
+const { celebrate, Segments, Joi } = require("celebrate");
 
 const routes = express.Router();
 const MovieController = require("../controllers/MovieController");
@@ -10,9 +10,10 @@ routes.post("/", celebrate({
     title: Joi.string().required(),
     year: Joi.number().required(),
     director: Joi.string().required(),
-    genres_id: Joi.array().items(Joi.number())
-  })
+    genres_id: Joi.array().items(Joi.number()),
+  }),
 }), Authentication, MovieController.createMovie);
+
 routes.get("/list", MovieController.listMoviesWithGenres);
 
 module.exports = routes;
