@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const Genre = require("../models/Genre");
 const Movie = require("../models/Movie");
 const User = require("../models/User");
@@ -14,7 +15,7 @@ module.exports = {
       return response.status(404).json({ error: "User not found." });
     }
 
-    const movieAlreadyExists = await Movie.findOne({ where: { title } });
+    const movieAlreadyExists = await Movie.findOne({ where: { title: { [Op.iLike]: title } } });
     if (movieAlreadyExists) {
       return response.status(422).json({ error: "Movie already exists." });
     }
