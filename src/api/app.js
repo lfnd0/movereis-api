@@ -1,5 +1,5 @@
 require("../database");
-const { errors } = require('celebrate');
+const { errors } = require("celebrate");
 
 const express = require("express");
 
