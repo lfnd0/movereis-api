@@ -3,8 +3,8 @@ version: "3.9"
 services:
 
   database:
-    image: postgres:14
-    container_name: movereis-pg
+    image: postgres
+    container_name: movereis-database
     ports:
       - ${DATABASE_PORT}:5432
     environment:
