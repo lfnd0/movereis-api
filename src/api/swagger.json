@@ -1,0 +1,87 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Movereis API Documentation",
+    "description": "This is an API movies.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "luiz-fsilva37@hotmail.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a new account",
+        "description": "Create a new account."
+      }
+    },
+    "/users/list/movies": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "List all movies created by user",
+        "description": "List all movies created by user."
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Authentication user",
+        "description": "Authentication user."
+      }
+    },
+    "/movies": {
+      "post": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Create a new movie",
+        "description": "Create a new movie."
+      }
+    },
+    "/movies/list": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "List all movies",
+        "description": "List all movies.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/genres/{id}/list/movies": {
+      "get": {
+        "tags": [
+          "Genres"
+        ]
+      },
+      "summary": "List all movies by genre",
+      "description": "List all movies by genre."
+    }
+  }
+}
