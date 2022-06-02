@@ -9,13 +9,87 @@
     }
   },
   "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Authentication user",
+        "description": "Authentication user.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "logan@mail.com",
+                  "password": "axsz012@3"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "E-mail or password incorrect"
+          }
+        }
+      }
+    },
     "/users": {
       "post": {
         "tags": [
           "Users"
         ],
         "summary": "Create a new account",
-        "description": "Create a new account."
+        "description": "Create a new account.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "username": "logan",
+                  "email": "logan@mail.com",
+                  "password": "axsz012@3"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "422 (1)": {
+            "description": "Username or e-mail already exists"
+          },
+          "422 (2)": {
+            "description": "E-mail already exists"
+          }
+        }
       }
     },
     "/users/list/movies": {
@@ -24,16 +98,90 @@
           "Users"
         ],
         "summary": "List all movies created by user",
-        "description": "List all movies created by user."
-      }
-    },
-    "/login": {
-      "post": {
-        "tags": [
-          "Authentication"
+        "description": "List all movies created by user.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
-        "summary": "Authentication user",
-        "description": "Authentication user."
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "user_id": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "year": {
+                        "type": "number"
+                      },
+                      "director": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      },
+                      "updatedAt": {
+                        "type": "string"
+                      },
+                      "genres": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "createdAt": {
+                              "type": "string"
+                            },
+                            "updatedAt": {
+                              "type": "string"
+                            },
+                            "movies_genres": {
+                              "type": "object",
+                              "properties": {
+                                "createdAt": {
+                                  "type": "string"
+                                },
+                                "updatedAt": {
+                                  "type": "string"
+                                },
+                                "movie_id": {
+                                  "type": "number"
+                                },
+                                "genre_id": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
       }
     },
     "/movies": {
@@ -82,6 +230,15 @@
       },
       "summary": "List all movies by genre",
       "description": "List all movies by genre."
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
     }
   }
 }

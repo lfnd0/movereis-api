@@ -24,3 +24,8 @@ logs:
 
 ps:
 	docker ps
+
+.PHONY: run
+
+run:
+	yarn dev
