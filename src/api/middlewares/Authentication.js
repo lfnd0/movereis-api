@@ -16,8 +16,6 @@ module.exports = async (request, response, next) => {
     const user_id = verify(token, process.env.TOKEN_SECRET);
     const user = await User.findByPk(user_id.sub);
 
-    // console.log(user_id);
-
     if (!user) {
       return response.status(404).json({ error: "User not found." });
     }

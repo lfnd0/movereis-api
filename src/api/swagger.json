@@ -180,6 +180,9 @@
           },
           "404": {
             "description": "User not found"
+          },
+          "401": {
+            "description": "Invalid token"
           }
         }
       }
